@@ -52,18 +52,6 @@ layer make_yolo_layer(int batch, int w, int h, int n, int total, int *mask, int 
     return l;
 }
 
-void resize_yolo_layer(layer *l, int w, int h)
-{
-    l->w = w;
-    l->h = h;
-
-    l->outputs = h*w*l->n*(l->classes + 4 + 1);
-    l->inputs = l->outputs;
-
-    l->output = realloc(l->output, l->batch*l->outputs*sizeof(float));
-    l->delta = realloc(l->delta, l->batch*l->outputs*sizeof(float));
-}
-
 box get_yolo_box(float *x, float *biases, int n, int index, int i, int j, int lw, int lh, int w, int h, int stride)
 {
     box b;
@@ -116,12 +104,10 @@ static int entry_index(layer l, int batch, int location, int entry)
 void forward_yolo_layer(const layer l, network net)
 {
 
-    int i,j,b,t,n;
-
     memcpy(l.output, net.input, l.outputs*l.batch*sizeof(float));
 
-    for (b = 0; b < l.batch; ++b){
-        for(n = 0; n < l.n; ++n){
+    for (int b = 0; b < l.batch; ++b){
+        for(int n = 0; n < l.n; ++n){
             int index = entry_index(l, b, n*l.w*l.h, 0);
             activate_array(l.output + index, 2*l.w*l.h, LOGISTIC);
             index = entry_index(l, b, n*l.w*l.h, 4);

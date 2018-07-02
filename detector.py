@@ -26,7 +26,7 @@ if __name__ == "__main__":
     detect.restype = objects
 
     load_net()
-
+ 
     for img in os.listdir('../darknet/data'):
         if img.endswith('jpg'):
             out = 'results/pred_'+img.split('.')[0]
@@ -44,4 +44,3 @@ if __name__ == "__main__":
                 prob = round(objs.objs[i].prob ,2)
                 print('name: ',n,'prob: ',prob, '\nbox: ',x,y,w,h,'\n')
             print()
-       

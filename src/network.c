@@ -130,56 +130,6 @@ void set_batch_network(network *net, int b)
     }
 }
 
-int resize_network(network *net, int w, int h)
-{
-
-    int i;
-    //if(w == net->w && h == net->h) return 0;
-    net->w = w;
-    net->h = h;
-    int inputs = 0;
-    size_t workspace_size = 0;
-    //fprintf(stderr, "Resizing to %d x %d...\n", w, h);
-    //fflush(stderr);
-    for (i = 0; i < net->n; ++i){
-        layer l = net->layers[i];
-        if(l.type == CONVOLUTIONAL){
-            resize_convolutional_layer(&l, w, h);
-        }else if(l.type == MAXPOOL){
-            resize_maxpool_layer(&l, w, h);
-        }else if(l.type == YOLO){
-            resize_yolo_layer(&l, w, h);
-        }else if(l.type == ROUTE){
-            resize_route_layer(&l, net);
-        }else if(l.type == UPSAMPLE){
-            resize_upsample_layer(&l, w, h);
-        }else{
-            error("Cannot resize this type of layer");
-        }
-        if(l.workspace_size > workspace_size) workspace_size = l.workspace_size;
-        if(l.workspace_size > 2000000000) assert(0);
-        inputs = l.outputs;
-        net->layers[i] = l;
-        w = l.out_w;
-        h = l.out_h;
- 
-    }
-    layer out = get_network_output_layer(net);
-    net->inputs = net->layers[0].inputs;
-    net->outputs = out.outputs;
-    net->truths = out.outputs;
-    if(net->layers[net->n-1].truths) net->truths = net->layers[net->n-1].truths;
-    net->output = out.output;
-    free(net->input);
-    free(net->truth);
-    net->input = calloc(net->inputs*net->batch, sizeof(float));
-    net->truth = calloc(net->truths*net->batch, sizeof(float));
-
-    //fprintf(stderr, " Done!\n");
-    return 0;
-}
-
-
 image get_network_image_layer(network *net, int i)
 {
     layer l = net->layers[i];

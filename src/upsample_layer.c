@@ -33,22 +33,6 @@ layer make_upsample_layer(int batch, int w, int h, int c, int stride)
     return l;
 }
 
-void resize_upsample_layer(layer *l, int w, int h)
-{
-    l->w = w;
-    l->h = h;
-    l->out_w = w*l->stride;
-    l->out_h = h*l->stride;
-    if(l->reverse){
-        l->out_w = w/l->stride;
-        l->out_h = h/l->stride;
-    }
-    l->outputs = l->out_w*l->out_h*l->out_c;
-    l->inputs = l->h*l->w*l->c;
-    l->delta =  realloc(l->delta, l->outputs*l->batch*sizeof(float));
-    l->output = realloc(l->output, l->outputs*l->batch*sizeof(float));
-}
-
 void forward_upsample_layer(const layer l, network net)
 {
     fill_cpu(l.outputs*l.batch, 0, l.output, 1);

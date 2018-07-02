@@ -43,22 +43,6 @@ maxpool_layer make_maxpool_layer(int batch, int h, int w, int c, int size, int s
     return l;
 }
 
-void resize_maxpool_layer(maxpool_layer *l, int w, int h)
-{
-    l->h = h;
-    l->w = w;
-    l->inputs = h*w*l->c;
-
-    l->out_w = (w + 2*l->pad)/l->stride;
-    l->out_h = (h + 2*l->pad)/l->stride;
-    l->outputs = l->out_w * l->out_h * l->c;
-    int output_size = l->outputs * l->batch;
-
-    l->indexes = realloc(l->indexes, output_size * sizeof(int));
-    l->output = realloc(l->output, output_size * sizeof(float));
-    l->delta = realloc(l->delta, output_size * sizeof(float));
-
-}
 
 void forward_maxpool_layer(const maxpool_layer l, network net)
 {
