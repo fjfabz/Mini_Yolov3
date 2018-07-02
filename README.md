@@ -22,7 +22,7 @@ Try it by building C code and running python demo. The api will return object na
 - Add more models and tasks
 - Maybe NNPACK make it faster
 - Make it easily for hacking 
-- Wait for deep learning suitable for engineer hacking
+- Wait for deep learning suitable for engineer hacking ⏱️⏱️⏱️
 
 ###  Acknowledgement
 
