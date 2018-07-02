@@ -1,12 +1,11 @@
 <img src="helv.gif"  />
 
+LightNet* is a minimize inference neural network fork from Darknet. I got a simple network running on lightweight mobile devices by hacking Darknet. Making networks running on mobile devices let them more useful.  
 
+For now it's just a YOLOv3 object detection network tiny version running with high FPS (22ms/52mAP), and everything unrelated was dropped, including cuda computing, trainning period and some layers.
 
-LightNet* is a minimize neural network inference framework fork from Darknet. By hacking darknet, surprisingly I got a simple network running on lightweight mobile devices. I think enabling networks running on mobile devices make them more useful. 
-
-Choosing darknet help me got a simple solution. And for now I just prove it by running YOLOv3 object detection model tiny version with high FPS (22ms/52mAP) . For now everything unrelated was dropped, including cuda computing, trainning period and some layers.
-
-Try it by building C code and running python demo. The api will return object names, probability and bounding boxs' axis. It works if you got predicition images like this,
+### Demo
+If you want a simple object detection solution, try it by building C code and running python demo. The detect function return a struct containing object names, probability and bounding boxs' axis. It works if you got predicition images like this,
 
 ![pred_giraffe](results/pred_giraffe.png)
 
