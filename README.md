@@ -21,7 +21,7 @@ If you want a simple object detection solution, try it by building C code and ru
 - Add more models and tasks
 - Maybe NNPACK make it faster
 - Make it easily for hacking 
-- Wait for deep learning suitable for engineer hacking ⏱️⏱️⏱️
+- Wait deep learning suitable for engineer hacking 😴 😴 😴
 
 ###  Acknowledgement
 
