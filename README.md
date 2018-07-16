@@ -5,9 +5,32 @@ LightNet* is a minimize inference neural network fork from Darknet. The goal of 
 For now it's just a YOLOv3-tiny network running with high FPS (22ms/52mAP), and everything unrelated was dropped, including cuda computing, trainning period and some layers.
 
 ### Demo
-If you want a simple object detection solution, try it by building C code and running python demo. The detect function return a struct containing object names, probability and bounding boxs' axis. It works if you got predicition images like this,
+If you want a simple object detection solution, try it by building C code and running detection demo. The detect function return a struct containing object names, probability and bounding boxs' axis. It works if you got predicition images like this,
 
 ![pred_giraffe](results/pred_giraffe.png)
+
+###  Restful Server Demo
+
+![](https://blog.keras.io/img/simple-keras-rest-api/dog.jpg)
+
+~~~bash
+#launch restful_server.py and testing rest api using curl 
+#upload dog.jpg, and we got the detail of detection 
+curl -X POST -F image=@dog.jpg 'http://localhost:5000/detect'
+{
+  "predictions:": [
+    {
+      "h": 56.46, 
+      "label": "dog", 
+      "prob": 73.18, 
+      "w": 44.56, 
+      "x": 47.93, 
+      "y": 36.55
+    }
+  ]
+}
+~~~
+
 
 ### Features
 
