@@ -1,11 +1,10 @@
-<img src="helv.gif"  />
+The goal of hacking darknet is running yolov3 net more fast and simple on Android, Raspberry Pi, other lightweight devices.
+The core' size limited to 200kb and you can modify and customize easily. 
 
-LightNet* is a minimize inference neural network fork from Darknet. The goal of hacking is running simple and practical networks on lightweight mobile devices.
+The YOLOv3-tiny network can running with high FPS (22ms/52mAP), everything unrelated was dropped, including cuda computing, trainning period and some layers. 
 
-For now it's just a YOLOv3-tiny network running with high FPS (22ms/52mAP), and everything unrelated was dropped, including cuda computing, trainning period and some layers.
-
-### Demo
-If you want a simple object detection solution, try it by building C code and running detection demo. The detect function return a struct containing object names, probability and bounding boxs' axis. It works if you got predicition images like this,
+### Demo1
+Just try it by building C code and running yolov3 object detection demo. You can get a C struct containing object names, probability and bounding boxs' axis as API. It works if you got predicition images like this,
 
 ![pred_giraffe](results/pred_giraffe.png)
 
@@ -30,21 +29,6 @@ curl -X POST -F image=@dog.jpg 'http://localhost:5000/detect'
   ]
 }
 ~~~
-
-
-### Features
-
-- Small,  the core' size limited to 200kb
-- Fast, written in C with performance optimization
-- Hackable, thanks to the tiny size and understand it is easy
-- Easy install, no external deps and just build by makefile in few seconds
-
-### Future work
-
-- Add more models and tasks
-- Maybe NNPACK make it faster
-- Make it easily for hacking 
-- Wait deep learning suitable for engineer hacking 😴 😴 😴
 
 ###  Acknowledgement
 
