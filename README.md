@@ -1,4 +1,4 @@
-The goal of hacking darknet is running yolov3 net more fast and simple on Android, Raspberry Pi, other lightweight devices.
+The repo makes yolov3 net more fast and simple on Android, Raspberry Pi, other lightweight devices.
 The core' size limited to 200kb and you can modify and customize easily. 
 
 The YOLOv3-tiny network can running with high FPS (22ms/52mAP), everything unrelated was dropped, including cuda computing, trainning period and some layers. 
@@ -32,9 +32,8 @@ curl -X POST -F image=@dog.jpg 'http://localhost:5000/detect'
 
 ###  Acknowledgement
 
-Darknet and YOLOnet are fantastic. If you want hack and have some fun, here are some useful links:
+Darknet is fantastic.
 
 - Darknet official repo: [Convolutional Neural Networks ](https://github.com/pjreddie/darknet)
-- Darknet official site: [Darknet: Open Source Neural Networks in C](https://pjreddie.com/darknet/)
 - YOLOv3: [Real-Time Object Detection](https://pjreddie.com/media/files/papers/YOLOv3.pdf)
 
