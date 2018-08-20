@@ -24,7 +24,7 @@ CFLAGS+=$(OPTS)
 
 OBJ=gemm.o utils.o activations.o convolutional_layer.o list.o image.o  im2col.o \
    col2im.o blas.o  data.o matrix.o network.o  parser.o option_list.o \
-   route_layer.o upsample_layer.o maxpool_layer.o box.o layer.o batchnorm_layer.o \
+   route_layer.o upsample_layer.o maxpool_layer.o shortcut_layer.o box.o layer.o batchnorm_layer.o \
    tree.o yolo_layer.o detector.o
 
 OBJS = $(addprefix $(OBJDIR), $(OBJ))

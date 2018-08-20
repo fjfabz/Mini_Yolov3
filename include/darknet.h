@@ -53,6 +53,7 @@ typedef enum {
     MAXPOOL,
     ROUTE,
     NETWORK,
+    SHORTCUT,
     YOLO,
     UPSAMPLE,
 } LAYER_TYPE;

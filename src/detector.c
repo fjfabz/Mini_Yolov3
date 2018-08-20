@@ -70,12 +70,12 @@ objects detect(char* input,char* output)
     return objs;
 }
 
-void load_net()
+void load_net(char* cfg,char* weights)
 {
 
     char *datacfg = "data/coco.data";
-    char *cfg = "data/yolov3-tiny.cfg";
-    char *weights = "data/yolov3-tiny.weights";
+    //char *cfg = "data/yolov3-tiny.cfg";
+    //char *weights = "data/yolov3-tiny.weights";
 
     list *options = read_data_cfg(datacfg);
     char *name_list = option_find_str(options, "names", "data/names.list");

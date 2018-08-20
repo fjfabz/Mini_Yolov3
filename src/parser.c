@@ -11,6 +11,7 @@
 #include "option_list.h"
 #include "parser.h"
 #include "yolo_layer.h"
+#include "shortcut_layer.h"
 #include "route_layer.h"
 #include "upsample_layer.h"
 #include "maxpool_layer.h"
@@ -26,6 +27,7 @@ list *read_cfg(char *filename);
 LAYER_TYPE string_to_layer_type(char * type)
 {
     if (strcmp(type, "[yolo]")==0) return YOLO;
+    if (strcmp(type, "[shortcut]")==0) return SHORTCUT;
     if (strcmp(type, "[conv]")==0
             || strcmp(type, "[convolutional]")==0) return CONVOLUTIONAL;
     if (strcmp(type, "[net]")==0
@@ -108,6 +110,25 @@ convolutional_layer parse_convolutional(list *options, size_params params)
     layer.dot = option_find_float_quiet(options, "dot", 0);
 
     return layer;
+}
+
+layer parse_shortcut(list *options, size_params params, network *net)
+{
+    char *l = option_find(options, "from");
+    int index = atoi(l);
+    if(index < 0) index = params.index + index;
+
+    int batch = params.batch;
+    layer from = net->layers[index];
+
+    layer s = make_shortcut_layer(batch, index, params.w, params.h, params.c, from.out_w, from.out_h, from.out_c);
+
+    char *activation_s = option_find_str(options, "activation", "linear");
+    ACTIVATION activation = get_activation(activation_s);
+    s.activation = activation;
+    s.alpha = option_find_float_quiet(options, "alpha", 1);
+    s.beta = option_find_float_quiet(options, "beta", 1);
+    return s;
 }
 
 maxpool_layer parse_maxpool(list *options, size_params params)
@@ -326,6 +347,8 @@ network *parse_network_cfg(char *filename)
             l = parse_yolo(options, params);
         }else if(lt == MAXPOOL){
             l = parse_maxpool(options, params);
+        }else if(lt == SHORTCUT){
+            l = parse_shortcut(options, params,net);
         }else if(lt == ROUTE){
             l = parse_route(options, params, net);
         }else if(lt == UPSAMPLE){

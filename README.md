@@ -1,7 +1,7 @@
 The repo makes yolov3 net more fast and simple on Android, Raspberry Pi, other lightweight devices.
 The core' size limited to 200kb and you can modify and customize easily. 
 
-The YOLOv3-tiny network can running with high FPS (22ms/52mAP), everything unrelated was dropped, including cuda computing, trainning period and some layers. 
+YOLOv3-tiny network can running with high FPS (22ms/52mAP), everything unrelated was dropped, including cuda computing, trainning period and some layers. 
 
 ### Demo1
 Just try it by building C code and running yolov3 object detection demo. You can get a C struct containing object names, probability and bounding boxs' axis as API. It works if you got predicition images like this,

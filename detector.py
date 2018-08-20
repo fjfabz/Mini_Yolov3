@@ -25,8 +25,9 @@ if __name__ == "__main__":
     detect.argtypes = [c_char_p,c_char_p]
     detect.restype = objects
 
-    load_net()
- 
+    #load_net(b'data/yolov3-tiny.cfg',b'data/yolov3-tiny.weights') # tiny version
+    load_net(b'data/yolov3.cfg',b'../yolov3.weights')
+    
     for img in os.listdir('../darknet/data'):
         if img.endswith('jpg'):
             out = 'results/pred_'+img.split('.')[0]
