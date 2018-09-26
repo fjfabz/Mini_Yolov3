@@ -1,10 +1,14 @@
-The repo makes yolov3 net more fast and simple on Android, Raspberry Pi, other lightweight devices.
-The core' size limited to 200kb and you can modify and customize easily. 
+The repo makes yolov3(tiny/standard version) net more fast and simple on Android, Raspberry Pi, other lightweight devices.
+The size of core limited to 200kb and you can modify and customize easily. And anything unrelated was dropped, including cuda computing, trainning period and some layers. 
 
-YOLOv3-tiny network can running with high FPS (22ms/52mAP), everything unrelated was dropped, including cuda computing, trainning period and some layers. 
+### Build 
+~~~bash
+➜  ~ make
+➜  ~ mv libdarknet.so /lib/
+~~~
 
 ### Demo1
-Just try it by building C code and running yolov3 object detection demo. You can get a C struct containing object names, probability and bounding boxs' axis as API. It works if you got predicition images like this,
+Check object detection demo in detector.py. You will get a C struct containing object names, probability and bounding boxs' axis as API. It works if you got predicition images like this,
 
 ![pred_giraffe](results/pred_giraffe.png)
 
